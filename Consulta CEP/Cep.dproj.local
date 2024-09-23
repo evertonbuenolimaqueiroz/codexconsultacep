@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/09/06 05:59:01.000.152,=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/18 10:50:49.000.180,=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/18 10:55:01.000.396,=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/22 14:25:04.000.056,=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/22 14:25:37.000.560,C:\queirozbueno\PROVAS\CodeX\uCep.pas=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/22 14:25:37.000.560,C:\queirozbueno\PROVAS\CodeX\uCep.dfm=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.dfm</Transaction>
+    <Transaction>2024/09/22 14:25:40.000.461,C:\queirozbueno\PROVAS\CodeX\Cep.dproj=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Project17.dproj</Transaction>
+    <Transaction>2024/09/22 14:35:56.000.928,=C:\queirozbueno\PROVAS\CodeX\Unit1.pas</Transaction>
+    <Transaction>2024/09/22 14:36:09.000.831,C:\queirozbueno\PROVAS\CodeX\uInterface.CEP.pas=C:\queirozbueno\PROVAS\CodeX\Unit1.pas</Transaction>
+    <Transaction>2024/09/22 14:38:29.000.278,C:\queirozbueno\PROVAS\CodeX\UConsultaCEP.pas=C:\queirozbueno\PROVAS\CodeX\uInterface.CEP.pas</Transaction>
+    <Transaction>2024/09/22 14:52:58.000.204,=C:\queirozbueno\PROVAS\CodeX\MsgBox.pas</Transaction>
+    <Transaction>2024/09/22 15:34:23.000.171,=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Unit1.pas</Transaction>
+    <Transaction>2024/09/22 15:34:35.000.792,C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Unit1.pas=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\UConsultaCepAPI.pas</Transaction>
+    <Transaction>2024/09/22 16:32:01.000.910,=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Unit1.pas</Transaction>
+    <Transaction>2024/09/22 16:32:28.000.945,C:\queirozbueno\PROVAS\CodeX\Consulta CEP\uTestuCep.pas=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Unit1.pas</Transaction>
+    <Transaction>2024/09/22 16:49:39.000.396,C:\queirozbueno\PROVAS\CodeX\Consulta CEP\uTestuCep.pas=</Transaction>
+    <Transaction>2024/09/23 10:31:31.677,=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Unit1.pas</Transaction>
+    <Transaction>2024/09/23 10:31:51.647,C:\queirozbueno\PROVAS\CodeX\Consulta CEP\uDM.pas=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Unit1.pas</Transaction>
+    <Transaction>2024/09/23 10:31:51.647,C:\queirozbueno\PROVAS\CodeX\Consulta CEP\uDM.dfm=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Unit1.dfm</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+</BorlandProject>

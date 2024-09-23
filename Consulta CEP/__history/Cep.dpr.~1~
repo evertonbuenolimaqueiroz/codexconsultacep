@@ -1,0 +1,16 @@
+program Cep;
+
+uses
+  Vcl.Forms,
+  uCep in 'uCep.pas' {Fcep},
+  UConsultaCEP in 'UConsultaCEP.pas',
+  MsgBox in 'MsgBox.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFcep, Fcep);
+  Application.Run;
+end.

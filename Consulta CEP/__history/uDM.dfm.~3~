@@ -1,0 +1,16 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 576
+  Width = 908
+  object con: TFDConnection
+    Params.Strings = (
+      'Database=CodeXCEP'
+      'User_Name=postgres'
+      'Password=sa'
+      'DriverID=PG'
+      'VendorLib=C:\Program Files (x86)\PostgreSQL\9.5\bin\libpq.dll')
+    LoginPrompt = False
+    Left = 72
+    Top = 32
+  end
+end

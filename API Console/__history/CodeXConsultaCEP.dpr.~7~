@@ -1,0 +1,70 @@
+program Server;
+
+uses
+  System.SysUtils,
+  Horse,
+  Horse.CORS, // Importa o middleware CORS
+  UConsultaCEP; // Unit que você já criou para buscar o CEP
+
+{$R *.res}
+
+procedure ValidarCEPHandler(Req: THorseRequest; Res: THorseResponse;
+  Next: TNextProc);
+var
+  CEP: string;
+  Endereco: TEndereco;
+  ConsultaCEP: TConsultaCEP;
+begin
+  CEP := Req.Params['cep'];
+
+  // Criar a instância de consulta de CEP
+  ConsultaCEP := TConsultaCEP.Create;
+  try
+    try
+      // Busca o endereço a partir do CEP
+      Endereco := ConsultaCEP.BuscarCep(CEP);
+      try
+        // Converte o resultado para JSON e envia na resposta
+        Res.Send(Format
+          ('{"cep": "%s", "logradouro": "%s", "bairro": "%s", "localidade": "%s", "uf": "%s", "ibge": "%s", "latitude": "%s", "longitude": "%s"}',
+          [Endereco.CEP, Endereco.Logradouro, Endereco.Bairro,
+          Endereco.Localidade, Endereco.UF, Endereco.IBGE, Endereco.Latitude,
+          Endereco.Longitude]));
+      finally
+        Endereco.Free;
+      end;
+    except
+      on E: Exception do
+        Res.Status(500).Send('Erro ao consultar o CEP: ' + E.Message);
+    end;
+  finally
+    ConsultaCEP.Free;
+  end;
+end;
+
+begin
+  // Configuração de CORS usando o Horse.CORS
+  THorse.Use(HorseCORS
+    // Middleware CORS para permitir acessos de outras origens
+    .AllowedOrigin('*') // Permite todas as origens
+    .AllowedCredentials('true') // Permite credenciais
+    .AllowedHeaders('*') // Permite todos os cabeçalhos
+    .AllowedMethods('*') // Permite todos os métodos (GET, POST, etc.)
+    .ExposedHeaders('*')) // Expõe todos os cabeçalhos
+    ;
+
+  // Rota GET simples para teste
+  THorse.Get('/ping',
+    procedure(Req: THorseRequest; Res: THorseResponse)
+    begin
+      Res.Send('pong');
+    end);
+
+  // Inicia o servidor na porta 9000
+  THorse.Listen(9000);
+
+  // Mensagem no console para indicar que o servidor está rodando
+  Writeln('Servidor rodando em http://localhost:9000/ping');
+  Readln; // Mantém o servidor rodando
+
+end.

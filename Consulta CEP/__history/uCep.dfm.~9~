@@ -1,0 +1,234 @@
+object Fcep: TFcep
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Consutar CEP'
+  ClientHeight = 388
+  ClientWidth = 822
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pgprincipal: TPageControl
+    Left = 0
+    Top = 43
+    Width = 822
+    Height = 345
+    ActivePage = tsdados
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = 96
+    ExplicitTop = 232
+    ExplicitWidth = 289
+    ExplicitHeight = 193
+    object tsconsulta: TTabSheet
+      Caption = 'Consulta'
+      ExplicitWidth = 281
+      ExplicitHeight = 165
+      object DBGrid1: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 814
+        Height = 317
+        Align = alClient
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+    end
+    object tsdados: TTabSheet
+      Caption = 'Dados'
+      ImageIndex = 1
+      ExplicitWidth = 281
+      ExplicitHeight = 165
+      object Label1: TLabel
+        Left = 16
+        Top = 160
+        Width = 19
+        Height = 13
+        Caption = 'CEP'
+      end
+      object Label2: TLabel
+        Left = 184
+        Top = 160
+        Width = 55
+        Height = 13
+        Caption = 'Logradouro'
+      end
+      object Label3: TLabel
+        Left = 392
+        Top = 160
+        Width = 28
+        Height = 13
+        Caption = 'Bairro'
+      end
+      object Label4: TLabel
+        Left = 528
+        Top = 160
+        Width = 33
+        Height = 13
+        Caption = 'Cidade'
+      end
+      object Label5: TLabel
+        Left = 712
+        Top = 160
+        Width = 59
+        Height = 13
+        Caption = 'IBGE Cidade'
+      end
+      object Label6: TLabel
+        Left = 16
+        Top = 216
+        Width = 33
+        Height = 13
+        Caption = 'Estado'
+      end
+      object Label7: TLabel
+        Left = 184
+        Top = 216
+        Width = 37
+        Height = 13
+        Caption = 'N'#250'mero'
+      end
+      object Label8: TLabel
+        Left = 392
+        Top = 216
+        Width = 65
+        Height = 13
+        Caption = 'Complemento'
+      end
+      object Label9: TLabel
+        Left = 528
+        Top = 216
+        Width = 47
+        Height = 13
+        Caption = 'Longitude'
+      end
+      object Label10: TLabel
+        Left = 664
+        Top = 216
+        Width = 39
+        Height = 13
+        Caption = 'Latitude'
+      end
+      object btncep: TSpeedButton
+        Left = 146
+        Top = 179
+        Width = 23
+        Height = 22
+        Hint = 'Clique para Buscar CEP'
+        Caption = '>>'
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btncepClick
+      end
+      object edtcep: TMaskEdit
+        Left = 16
+        Top = 179
+        Width = 129
+        Height = 21
+        Hint = 'Clique para Buscar CEP'
+        TabOrder = 0
+        Text = ''
+      end
+      object edtlogradouro: TEdit
+        Left = 184
+        Top = 179
+        Width = 193
+        Height = 21
+        TabOrder = 1
+      end
+      object edtbairro: TEdit
+        Left = 392
+        Top = 179
+        Width = 130
+        Height = 21
+        TabOrder = 2
+      end
+      object edtcidade: TEdit
+        Left = 528
+        Top = 179
+        Width = 178
+        Height = 21
+        TabOrder = 3
+      end
+      object edtibge: TEdit
+        Left = 712
+        Top = 179
+        Width = 82
+        Height = 21
+        TabOrder = 4
+      end
+      object edtestado: TEdit
+        Left = 16
+        Top = 235
+        Width = 153
+        Height = 21
+        TabOrder = 5
+      end
+      object edtnumero: TEdit
+        Left = 184
+        Top = 235
+        Width = 193
+        Height = 21
+        TabOrder = 6
+      end
+      object edtcomplemento: TEdit
+        Left = 392
+        Top = 235
+        Width = 130
+        Height = 21
+        TabOrder = 7
+      end
+      object edtlongitude: TEdit
+        Left = 528
+        Top = 235
+        Width = 130
+        Height = 21
+        TabOrder = 8
+      end
+      object edtlatitude: TEdit
+        Left = 664
+        Top = 235
+        Width = 130
+        Height = 21
+        TabOrder = 9
+      end
+      object RadioGroup1: TRadioGroup
+        Left = 16
+        Top = 80
+        Width = 778
+        Height = 65
+        Caption = ' Buscar CEP por '
+        Columns = 2
+        ItemIndex = 0
+        Items.Strings = (
+          'API'
+          'API Horse')
+        TabOrder = 10
+      end
+    end
+  end
+  object ncep: TDBNavigator
+    Left = 0
+    Top = 0
+    Width = 822
+    Height = 43
+    VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+    Align = alTop
+    TabOrder = 1
+  end
+  object dsconsultadados: TDataSource
+    Left = 748
+    Top = 32
+  end
+end

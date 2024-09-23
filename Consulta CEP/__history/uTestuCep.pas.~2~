@@ -1,0 +1,95 @@
+unit uTestuCep;
+
+interface
+
+uses
+  TestFramework, // DUnit framework
+  uCep, // Unit onde TFcep está implementada
+  SysUtils;
+
+type
+  // Classe de Teste para a TFcep
+  TestTFcep = class(TTestCase)
+  private
+    FFcep: TFcep;
+  public
+    procedure SetUp; override;
+    procedure TearDown; override;
+    function ValidarCEP(const CEP: string): Boolean;
+  published
+    procedure TestValidarCEPCorretamente;
+    procedure TestValidarCEPInvalido;
+    procedure TestConsultarCEPValido;
+  end;
+
+implementation
+
+procedure TestTFcep.SetUp;
+begin
+  // Cria uma instância do formulário para ser testado
+  FFcep := TFcep.Create(nil);
+end;
+
+procedure TestTFcep.TearDown;
+begin
+  // Libera a instância criada após cada teste
+  FFcep.Free;
+end;
+
+procedure TestTFcep.TestValidarCEPCorretamente;
+begin
+  // Testando a função ValidarCEP com um CEP válido
+  CheckTrue(FFcep.ValidarCEP('12345678'),
+    'O CEP válido não foi aceito corretamente.');
+end;
+
+procedure TestTFcep.TestValidarCEPInvalido;
+begin
+  // Testando a função ValidarCEP com diferentes formatos de CEP inválido
+  CheckFalse(FFcep.ValidarCEP('12345'),
+    'CEP com menos de 8 dígitos foi aceito incorretamente.');
+  CheckFalse(FFcep.ValidarCEP('1234abcd'),
+    'CEP com caracteres não numéricos foi aceito incorretamente.');
+  CheckFalse(FFcep.ValidarCEP(''), 'CEP vazio foi aceito incorretamente.');
+end;
+
+procedure TestTFcep.TestConsultarCEPValido;
+var
+  TesteCEP: string;
+begin
+  // Simulando a consulta de um CEP válido (substitua esta lógica para adaptar à sua API ou fonte de dados)
+  TesteCEP := '01001000'; // Exemplo de um CEP válido
+
+  try
+    FFcep.ConsultarCEP(TesteCEP);
+    // Aqui você simularia uma consulta real de CEP
+    // Simplesmente verificamos se algum valor foi preenchido após a consulta
+    CheckNotEquals('', FFcep.edtlogradouro.Text,
+      'Logradouro não foi preenchido.');
+    CheckNotEquals('', FFcep.edtcidade.Text, 'Cidade não foi preenchida.');
+    CheckNotEquals('', FFcep.edtbairro.Text, 'Bairro não foi preenchido.');
+    CheckNotEquals('', FFcep.edtestado.Text, 'Estado não foi preenchido.');
+  except
+    on E: Exception do
+      Fail('Erro ao consultar CEP: ' + E.Message);
+  end;
+end;
+
+function TestTFcep.ValidarCEP(const CEP: string): Boolean;
+var
+  Limpo: string;
+  Numero: Integer;
+begin
+  // Remove qualquer caractere que não seja número (ex.: hífen)
+  Limpo := StringReplace(CEP, '-', '', [rfReplaceAll]);
+
+  // Verifica se o comprimento da string é exatamente 8 e se é um número
+  Result := (Length(Limpo) = 8) and TryStrToInt(Limpo, Numero);
+end;
+
+initialization
+
+// Registra a classe de teste para que o DUnit possa executá-la
+RegisterTest(TestTFcep.Suite);
+
+end.

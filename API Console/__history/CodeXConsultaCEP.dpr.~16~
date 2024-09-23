@@ -1,0 +1,66 @@
+program ConsoleServer;
+
+{$APPTYPE CONSOLE}
+
+uses
+  Horse,
+  Horse.CORS, // Middleware para CORS
+  System.SysUtils,
+  UConsultaCEP; // Certifique-se de incluir a unit para buscar o CEP
+
+procedure ValidarCEPHandler(Req: THorseRequest; Res: THorseResponse);
+var
+  CEP: string;
+  Endereco: TEndereco;
+  ConsultaCEP: TConsultaCEP;
+begin
+  // Captura o CEP passado na URL
+  CEP := Req.Params['cep'];
+
+  // Instância da classe para consulta do CEP
+  ConsultaCEP := TConsultaCEP.Create;
+  try
+    try
+      // Busca o endereço a partir do CEP informado
+      Endereco := ConsultaCEP.BuscarCep(CEP);
+      try
+        // Retorna os dados do endereço em formato JSON
+        Res.Send(Format
+          ('{"cep": "%s", "logradouro": "%s", "bairro": "%s", "localidade": "%s", "uf": "%s", "ibge": "%s", "latitude": "%s", "longitude": "%s"}',
+          [Endereco.CEP, Endereco.Logradouro, Endereco.Bairro,
+          Endereco.Localidade, Endereco.UF, Endereco.IBGE, Endereco.Latitude,
+          Endereco.Longitude]));
+      finally
+        Endereco.Free;
+      end;
+    except
+      on E: Exception do
+        Res.Status(500).Send('Erro ao consultar o CEP: ' + E.Message);
+    end;
+  finally
+    ConsultaCEP.Free;
+  end;
+end;
+
+begin
+  // Configuração de CORS para permitir acessos de outras origens
+  THorse.Use(CORS);
+
+  // Rota GET para a validação do CEP
+  THorse.Get('/cep/:cep', ValidarCEPHandler);
+
+  // Rota de teste
+  THorse.Get('/ping',
+    procedure(Req: THorseRequest; Res: THorseResponse)
+    begin
+      Res.Send('pong');
+    end);
+
+  // Inicia o servidor na porta 9000
+  THorse.Listen(9000);
+
+  // Mensagem no console para indicar que o servidor está rodando
+  Writeln('Servidor rodando em http://localhost:9000');
+  Readln; // Mantém o servidor rodando
+
+end.

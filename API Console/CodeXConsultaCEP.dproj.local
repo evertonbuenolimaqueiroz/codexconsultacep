@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/09/06 05:59:01.000.152,=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/18 10:50:49.000.180,=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/18 10:55:01.000.396,=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit19.pas</Transaction>
+    <Transaction>2024/09/22 15:02:12.000.893,C:\queirozbueno\PROVAS\CodeX\API Console\CodeXConsultaCEP.dproj=C:\Users\evert\OneDrive\Documentos\Embarcadero\Studio\Projects\Project17.dproj</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+</BorlandProject>

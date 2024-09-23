@@ -1,0 +1,104 @@
+unit UConsultaCepAPI;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, System.Net.HttpClient,
+  System.Net.HttpClientComponent, System.JSON;
+// Unit necessária para TNetHTTPClient
+
+type
+  TConsultaCepAPI = class
+  private
+    FCEP: string;
+    FLogradouro: string;
+    FBairro: string;
+    FLocalidade: string;
+    FUF: string;
+    FIBGE: string;
+    FLatitude: string;
+    FLongitude: string;
+    FErro: string;
+  public
+    // Propriedades
+    property CEP: string read FCEP;
+    property Logradouro: string read FLogradouro;
+    property Bairro: string read FBairro;
+    property Localidade: string read FLocalidade;
+    property UF: string read FUF;
+    property IBGE: string read FIBGE;
+    property Latitude: string read FLatitude;
+    property Longitude: string read FLongitude;
+    property Erro: string read FErro;
+
+    // Método para consultar o CEP na API
+    function ConsultarCEP(const ACEP: string): Boolean;
+  end;
+
+implementation
+
+function TConsultaCepAPI.ConsultarCEP(const ACEP: string): Boolean;
+var
+  HttpClient: TNetHTTPClient;
+  HttpResponse: IHTTPResponse;
+  JSONResponse: TJSONObject;
+  URL: string;
+begin
+  Result := False; // Inicializa com falso
+  FErro := ''; // Limpa possíveis erros anteriores
+
+  // Verifica se o CEP tem o formato correto (8 dígitos)
+  if (Length(ACEP) <> 8) or not TryStrToInt(ACEP, Integer(nil^)) then
+  begin
+    FErro := 'CEP inválido. Deve conter 8 dígitos numéricos.';
+    Exit;
+  end;
+
+  // Cria a URL para a requisição da API
+  URL := 'http://localhost:9000/cep/' + ACEP;
+
+  HttpClient := TNetHTTPClient.Create(nil);
+  try
+    try
+      // Faz a requisição GET para a API
+      HttpResponse := HttpClient.Get(URL);
+
+      // Verifica se o status da resposta é 200 (sucesso)
+      if HttpResponse.StatusCode = 200 then
+      begin
+        // Carrega o JSON retornado pela API
+        JSONResponse := TJSONObject.ParseJSONValue
+          (HttpResponse.ContentAsString(TEncoding.UTF8)) as TJSONObject;
+        try
+          if Assigned(JSONResponse) then
+          begin
+            // Preenche as propriedades com os dados retornados
+            FCEP := JSONResponse.GetValue<string>('cep', '');
+            FLogradouro := JSONResponse.GetValue<string>('logradouro', '');
+            FBairro := JSONResponse.GetValue<string>('bairro', '');
+            FLocalidade := JSONResponse.GetValue<string>('localidade', '');
+            FUF := JSONResponse.GetValue<string>('uf', '');
+            FIBGE := JSONResponse.GetValue<string>('ibge', '');
+            FLatitude := JSONResponse.GetValue<string>('latitude', '');
+            FLongitude := JSONResponse.GetValue<string>('longitude', '');
+
+            Result := True; // Consulta bem-sucedida
+          end
+          else
+            FErro := 'Erro ao processar a resposta JSON.';
+        finally
+          JSONResponse.Free;
+        end;
+      end
+      else
+        FErro := 'Erro na consulta da API. Status: ' + HttpResponse.StatusText;
+    except
+      on E: Exception do
+        FErro := 'Erro ao consultar o CEP: ' + E.Message;
+    end;
+  finally
+    HttpClient.Free;
+  end;
+end;
+
+end.

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/09/22 16:48:25.000.067,=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\Test\TestuCep.pas</Transaction>
+    <Transaction>2024/09/22 16:48:25.000.655,=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\uCep.pas</Transaction>
+    <Transaction>2024/09/22 16:50:31.000.836,=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\UConsultaCepAPI.pas</Transaction>
+    <Transaction>2024/09/22 16:50:31.000.783,=C:\queirozbueno\PROVAS\CodeX\Consulta CEP\UConsultaCEP.pas</Transaction>
+  </Transactions>
+</BorlandProject>
